@@ -38,7 +38,14 @@ socket.on('change nickname', function(data){
 
 function stringFromData(data){
     var local_time = new Date(data['timestamp']);
-    var time_string = local_time.getHours() + ':' + local_time.getMinutes() + ':' + local_time.getSeconds();
+    var time_string = addZero(local_time.getHours()) + ':' + addZero(local_time.getMinutes()) + ':' + addZero(local_time.getSeconds());
     var msg = time_string + ' ' + data['nickname'] +': '+ data['msg'];
     return msg;
+}
+
+function addZero(i) {
+    if (i < 10) {
+        i = "0" + i;
+    }
+    return i;
 }
