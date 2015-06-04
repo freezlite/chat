@@ -12,7 +12,7 @@ var nicknames = {};
 var nicknames_list = [];
 var log = [];
 
-var announcement = '<u>Нововеденья: теперь работают ссылки. При заходе видно лог последних 15 сообщений. Вскоре чатик перенесу на домен.</u>';
+var announcement = '<u>Время теперь отображается корректно.</u>';
 
 
 var actions = {
@@ -97,8 +97,8 @@ io.on('connection', function(socket){
 });
 
 
-http.listen(process.env.PORT, function(){
-  console.log('listening on *:' +  process.env.PORT);
+http.listen(80, function(){
+  console.log('listening on *:' +  80);
 });
 
 function elementExists(arr, element){
