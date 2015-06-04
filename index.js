@@ -22,7 +22,7 @@ var actions = {
       nicknames[socket.id] = nick[1];
       nicknames_list.push(nick[1]);
       deleteElementIfExists(nicknames_list, old_nickname);
-      io.emit('chat message', 'system: ' + old_nickname + ' change name to ' + nick[1]);
+      io.emit('change nickname', [old_nickname, nick[1]]);
     }else{
       io.to(socket.id).emit('error', 'Such nick allready taken');
     }

@@ -31,6 +31,10 @@ socket.on('change users count', function(count) {
 socket.on('error', function(msg) {
     alert(msg);
 });
+socket.on('change nickname', function(data){
+    var msg = data[0] + ' changed nickname to ' + data[1];
+    $('#messages').append($('<li>').html(msg));
+})
 
 function stringFromData(data){
     var local_time = new Date(data['timestamp']);
