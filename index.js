@@ -39,11 +39,15 @@ io.on('connection', function(socket){
   user_count++;
   console.log('User connected, total users: ' + user_count)
   nicknames[socket.id] = 'guest' + Math.floor((Math.random() * 100) + 1);
+  nicknames_list.push(nicknames[socket.id]);
+  
   io.emit('join', nicknames[socket.id]);
+  io.to(socket.id).emit('nickname', nicknames[socket.id]);
   io.to(socket.id).emit('message', log);
   io.to(socket.id).emit('announcement', announcement);
-  
+  io.to(socket.id).emit('users', nicknames_list);
   io.emit('change users count', user_count);
+  
   socket.on('message', function(msg){
     if(msg){
       if(msg.length > 1000){
@@ -97,8 +101,8 @@ io.on('connection', function(socket){
 });
 
 
-http.listen(80, function(){
-  console.log('listening on *:' +  80);
+http.listen(process.env.PORT, function(){
+  console.log('listening on *:' +  process.env.PORT);
 });
 
 function elementExists(arr, element){
