@@ -23,6 +23,7 @@ var actions = {
       nicknames_list.push(nick[1]);
       deleteElementIfExists(nicknames_list, old_nickname);
       io.emit('change nickname', [old_nickname, nick[1]]);
+      io.to(socket.id).emit('nickname', nicknames[socket.id]);
     }else{
       io.to(socket.id).emit('error', 'Such nick allready taken');
     }
@@ -50,9 +51,15 @@ io.on('connection', function(socket){
   
   socket.on('message', function(msg){
     if(msg){
+      var last_message = getLastUserMessage(nicknames[socket.id], log);
+      console.log(last_message);
       if(msg.length > 1000){
         io.to(socket.id).emit('error', 'Too large text');
-      }else{
+      } else if(Date.now() - last_message['timestamp'] < 1000){
+        io.to(socket.id).emit('error', 'Spam not allowed');
+      } else if(last_message['msg'] == msg) {
+        io.to(socket.id).emit('error', 'Spam not allowed');
+      } else {
         var isAction = false;
         
         for (var action in actions) {
@@ -115,4 +122,13 @@ function deleteElementIfExists(arr, element){
   if (index > -1){
     arr.splice(index, 1);
   }
+}
+
+function getLastUserMessage(username, log){
+  for (var i = log.length-1; i >= 0; i--){
+    if (log[i]['nickname'] == username){
+      return log[i];
+    }
+  }
+  return false;
 }
