@@ -33,6 +33,11 @@ socket.on('users', function(data){
    }
 });
 
+socket.on('disconnect', function() {
+    $('#users_online').empty()
+    is_self_join = true
+})
+
 socket.on('announcement', function(count) {
     $('#messages').append($('<li>').html(count));
 });
@@ -86,10 +91,10 @@ $('#hide').click(function() {
     if($('#messages_container').hasClass('col-md-10')){
         $('#users_container').hide();
         $('#messages_container').toggleClass('col-md-10 col-md-12');
-        $('#hide').html('&#x25B6;');
+        $('#hide').html('&#x25C0;');
     }else{
         $('#users_container').show();
         $('#messages_container').toggleClass('col-md-12 col-md-10');
-        $('#hide').html('&#x25C0;');
+        $('#hide').html('&#x25B6;');
     }
 })

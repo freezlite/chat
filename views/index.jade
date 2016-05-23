@@ -1,0 +1,30 @@
+doctype html
+html(style='height: 100%')
+  head
+    title In da club
+    link(rel='stylesheet', href='/static/styles.css')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css')
+  body
+    #navbar.navbar.navbar-default.navbar-fixed-top
+      .navbar-header
+        a.navbar-brand(href='/') Some text
+      .container-fluid
+        ul.nav.navbar-nav.navbar-right
+          li
+            a#hide(href='#') &#x25C0;
+    .container-fluid
+      #messages_container.col-md-12
+        ul#messages
+      #users_container.col-md-2
+        p#users
+        ul#users_online
+    form(action='')
+      .input-group
+        input#m.form-control.input-sm.chat_input(type='text', autocomplete='off', placeholder='Write your message here...')
+        span.input-group-btn
+          button#btn-chat.btn.btn-primary.btn-sm Send
+    audio#notify(preload='')
+      source(src='static/notify.mp3', type='audio/mpeg')
+    script(src='https://cdn.socket.io/socket.io-1.2.0.js')
+    script(src='https://code.jquery.com/jquery-1.11.1.js')
+    script(src='/static/main.js')
