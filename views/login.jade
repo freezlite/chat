@@ -2,7 +2,21 @@ doctype html
 html(lang="en")
   head
     title= pageTitle
+    link(rel='stylesheet', href='/static/styles.css')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css')
+    script(src='/static/login.js')
   body
-    form(method='POST', action='')
-      != captcha
-      input(type='submit', value='Check Recaptcha')
+    .text-center
+      #login-form
+        #legend
+          legend= 'Chatting'
+        if (messages.warning)
+          .alert.alert-dismissable.alert-warning= messages.warning
+            button.close( type="button", data-dismiss="alert" ) ×
+        form(method='POST', action='')
+          .form-group
+            input(class='form-control', name='nickname' placeholder='Nickname')
+          .form-group
+            != captcha
+          .form-group          
+            input(class='btn btn-default', type='submit', value='go chat')

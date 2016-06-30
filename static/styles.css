@@ -1,6 +1,6 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font: 13px Helvetica, Arial; height: 100%; padding-top: 60px;}
-form { position: fixed; bottom: 0; width: 100%; }
+#text-form { position: fixed; bottom: 0; width: 100%; }
 
 #messages {
     height: 100%;
@@ -38,4 +38,14 @@ form { position: fixed; bottom: 0; width: 100%; }
 
 .container-fluid{
     height: 100%;
+}
+
+#login-form {
+    display: inline-block;
+    margin: 0 auto;
+    max-width: 400px;
+}
+
+#login-form form {
+    text-align: center;
 }
