@@ -1,5 +1,5 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font: 13px Helvetica, Arial; height: 100%; padding-top: 60px;}
+body { height: 100%;}
 #text-form { position: fixed; bottom: 0; width: 100%; }
 
 #messages {
@@ -19,6 +19,7 @@ body { font: 13px Helvetica, Arial; height: 100%; padding-top: 60px;}
     height: calc(100% - 40px);
     padding: 0 !important;
     margin: 0 !important;
+    border-right: 1px solid black;
 }
 
 #users_container{
@@ -37,6 +38,7 @@ body { font: 13px Helvetica, Arial; height: 100%; padding-top: 60px;}
 }
 
 .container-fluid{
+    margin-top: 10px;
     height: 100%;
 }
 
